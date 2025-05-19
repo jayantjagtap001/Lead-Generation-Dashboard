@@ -10,9 +10,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/",async(req,res)=>{
+    try {
+        res.status(200).json("Lead Generation Analytics Backend");
+
+    } catch (error) {
+        res.status(404).json({error});
+    }
+})
+
+
 mongoose.connect(process.env.MONGODB_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB Error:", err));
+
+
 
 app.use("/leads", leadRoutes);
 
